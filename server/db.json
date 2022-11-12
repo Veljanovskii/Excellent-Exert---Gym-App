@@ -3,16 +3,22 @@
       {
         "id": 1234,
         "name": "Plank",
+        "category": 4,
+        "unit": "s",
         "description": ""
       },
       {
         "id": 1235,
         "name": "Squat",
+        "category": 3,
+        "unit": "rep",
         "description": ""
       },
       {
         "id": 1236,
         "name": "Deadlift",
+        "category": 2,
+        "unit": "rep",
         "description": ""
       }
     ]
