@@ -5,21 +5,33 @@
         "name": "Plank",
         "category": 4,
         "unit": "s",
-        "description": ""
+        "numberOfSets": 3,
+        "numberOfReps": 30,
+        "description": "",
+        "image": "assets/exercises/"
       },
       {
         "id": 1235,
-        "name": "Squat",
+        "name": "Plie Squat Scoop Up",
         "category": 3,
-        "unit": "rep",
-        "description": ""
+        "unit": "rep",        
+        "numberOfSets": 3,
+        "numberOfReps": 12,
+        "description": ["1. Stand with your feet shoulder-width apart and with one foot forward and the other foot behind you.",
+          "2. Jump and switch leg positions.",
+          "3. Jump again, landing with your feet a little wider than shoulder-width apart, and squat.",
+          "4. Jump to return to the starting position and repeat the exercise."],
+        "image": "assets/exercises/PlieSquatScoopUp.gif"
       },
       {
         "id": 1236,
-        "name": "Deadlift",
+        "name": "Flutter Kick Squats",
         "category": 2,
         "unit": "rep",
-        "description": ""
+        "numberOfSets": 3,
+        "numberOfReps": 8,
+        "description": "",
+        "image": "assets/exercises/FlutterKickSquats.gif"
       }
     ]
   }
