@@ -1,26 +1,35 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, AfterViewInit, ViewChild  } from '@angular/core';
 import { ExercisesService } from 'src/app/exercises.service';
 import { Exercise } from 'src/app/models/exercise'
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-exercises',
   templateUrl: './exercises.component.html',
-  styleUrls: ['./exercises.component.css']
+  styleUrls: ['./exercises.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
-export class ExercisesComponent implements OnInit {
+export class ExercisesComponent implements AfterViewInit {
 
   displayedColumns: string[] = ['image', 'name', 'category', 'numberOfSets', 'numberOfReps', 'actions'];
   dataSource!: MatTableDataSource<Exercise>;
+  expandedElement!: Exercise | null;
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private exercisesService: ExercisesService) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
 
     this.exercisesService.getExercises().subscribe(data => {
       console.log(data);

@@ -4,46 +4,67 @@
  </mat-form-field>
  
  <div class="mat-elevation-z8">
-   <table mat-table [dataSource]="dataSource" matSort>
+   <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDisableClear matSortDirection="asc" multiTemplateDataRows>
 
      <!-- Image Column -->
      <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let row"> <img *ngIf="row.image" class="small-preview" src={{row.image}}> </td>
      </ng-container>
 
      <!-- Name Column -->
      <ng-container matColumnDef="name">
-       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+       <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Name </th>
        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
      </ng-container>
  
      <!-- Category Column -->
      <ng-container matColumnDef="category">
-       <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+       <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Category </th>
        <td mat-cell *matCellDef="let row"> {{row.category}} </td>
      </ng-container>
  
      <!-- NumberOfSets Column -->
      <ng-container matColumnDef="numberOfSets">
-       <th mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Sets </th>
+       <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Number Of Sets </th>
        <td mat-cell *matCellDef="let row"> {{row.numberOfSets}} </td>
      </ng-container>
  
      <!-- NumberOfReps Column -->
      <ng-container matColumnDef="numberOfReps">
-       <th mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Reps </th>
+       <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Number Of Reps </th>
        <td mat-cell *matCellDef="let row"> {{row.numberOfReps}} </td>
      </ng-container>
 
      <!-- Actions Column -->
      <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let row"> <i class="material-icons">edit</i> <i class="material-icons">delete</i> </td> <!-- TODO -->
-    </ng-container>
+     </ng-container>
  
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element;" [attr.colspan]="displayedColumns.length">
+        <div class="element-detail"
+             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div *ngIf="element.image" class="image-container">
+            <img class="" src={{element.image}}>
+          </div>
+          <div class="element-description">
+            {{element.Name}}
+            <a mat-button color="accent" id="editExercise">Edit</a>
+            <a mat-button color="danger" id="deleteExercise">Delete</a>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+         class="element-row"
+         [class.expanded-row]="expandedElement === row"
+         (click)="expandedElement = expandedElement === row ? null : row">
+     </tr>     
+     <tr mat-row *matRowDef="let row; columns: ['expandedDetail'];" class="detail-row"></tr>
  
      <!-- Row shown when there is no matching data. -->
      <tr class="mat-row" *matNoDataRow>
@@ -51,6 +72,6 @@
      </tr>
    </table>
  
-   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of exercises"></mat-paginator>
+   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select page"></mat-paginator>
  </div>
  

@@ -73,3 +73,32 @@ table {
     word-break: break-word;
   }
   
+  .element-description {
+    width: 90%;
+    padding: 16px;
+  }
+
+  .element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+
+  .image-container {
+    padding-right: 6%;
+  }
+
+  tr.element-row:not(.expanded-row):hover {
+    background: #7B1EA2;
+  }
+  
+  tr.element-row:not(.expanded-row):active {
+    background: #efefef;
+  }
+  
+  .element-row td {
+    border-bottom-width: 0;
+  }
+
+  tr.detail-row {
+    height: 0;
+  }
