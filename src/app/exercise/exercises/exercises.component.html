@@ -37,10 +37,10 @@
         <ng-template #seconds> 1 x {{row.numberOfReps}} seconds </ng-template> </td>
      </ng-container>
 
-     <!-- Idk1 Column -->
-     <ng-container matColumnDef="idk1">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Idk1 </th>
-      <td mat-cell *matCellDef="let row"> TODO: Come up with something pls</td>
+     <!-- Primary Muscles Column -->
+     <ng-container matColumnDef="primaryMuscles">
+      <th mat-header-cell *matHeaderCellDef> Primary Muscles </th>
+      <td mat-cell *matCellDef="let row"> {{row.primaryMuscles}} </td>
      </ng-container>
  
     <ng-container matColumnDef="expandedDetail">

@@ -22,7 +22,7 @@ import { DeleteExerciseComponent } from '../delete-exercise/delete-exercise.comp
 })
 export class ExercisesComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['image', 'name', 'category', 'numberOfSets', 'numberOfReps', 'idk1'];
+  displayedColumns: string[] = ['image', 'name', 'category', 'numberOfSets', 'numberOfReps', 'primaryMuscles'];
   dataSource!: MatTableDataSource<Exercise>;
   expandedElement!: Exercise | null;
   
