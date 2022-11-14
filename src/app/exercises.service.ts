@@ -7,11 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class ExercisesService {
 
-  url = 'http://localhost:3000';
+  url = 'http://localhost:3000/exercises';
  
  constructor(private http: HttpClient) { }
  
  getExercises(): Observable<any> {
-   return this.http.get(this.url + '/exercises');
+   return this.http.get(this.url);
+ }
+
+ deleteExercise(id: number): Observable<any> {
+  return this.http.delete(`${this.url}/${id}`);
  }
 }

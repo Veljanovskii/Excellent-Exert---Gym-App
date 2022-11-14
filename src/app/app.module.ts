@@ -13,6 +13,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule  } from '@angular/material/sort';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule  } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,7 @@ import { ExercisesComponent } from './exercise/exercises/exercises.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
+import { DeleteExerciseComponent } from './exercise/delete-exercise/delete-exercise.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     SidenavComponent,
     HomeComponent,
+    DeleteExerciseComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { HomeComponent } from './home/home.component';
     MatPaginatorModule,
     MatTableModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    MatButtonModule,
+    MatDialogModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

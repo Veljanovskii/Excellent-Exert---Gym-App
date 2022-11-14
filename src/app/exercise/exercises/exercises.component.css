@@ -13,6 +13,24 @@ table {
     height: 45px;
   }
 
+  .large-preview {
+    margin-top: 3%;
+    width: 600px;
+    height: 450px;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  .editExercise {
+    background-color: #FF9800;
+  }
+
+  .deleteExercise {
+    background-color: #F44336;
+  }
+
   .mat-column-image {
     word-wrap: break-word !important;
     white-space: unset !important;

@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteExerciseComponent } from '../delete-exercise/delete-exercise.component';
 
 @Component({
   selector: 'app-exercises',
@@ -20,14 +22,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class ExercisesComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['image', 'name', 'category', 'numberOfSets', 'numberOfReps', 'actions'];
+  displayedColumns: string[] = ['image', 'name', 'category', 'numberOfSets', 'numberOfReps', 'idk1'];
   dataSource!: MatTableDataSource<Exercise>;
   expandedElement!: Exercise | null;
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private exercisesService: ExercisesService) { }
+  constructor(private exercisesService: ExercisesService,
+    public dialogDelete: MatDialog) { }
 
   ngAfterViewInit(): void {
 
@@ -47,6 +50,21 @@ export class ExercisesComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openDeleteDialog(id: number): void {
+    const dialogDeleteRef = this.dialogDelete.open(DeleteExerciseComponent, {
+      width: '375px',
+      data: {
+        index: id
+      }
+    });
+
+    dialogDeleteRef.afterClosed().subscribe(result => {
+      if(result == true) {
+        // DO STUFF
+      }
+    });
   }
 
 }
