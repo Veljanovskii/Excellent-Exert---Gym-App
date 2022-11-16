@@ -54,7 +54,7 @@
             <ul>
               <li *ngFor="let sentence of element.description">{{sentence}}</li>
             </ul>
-            <a mat-button class="editExercise"><i class="material-icons">edit</i>Edit</a>
+            <a mat-button class="editExercise" (click)="openEditDialog(element)"><i class="material-icons">edit</i>Edit</a>
             <a mat-button class="deleteExercise" (click)="openDeleteDialog(element.id)"><i class="material-icons">delete</i>Delete</a>
           </div>
         </div>

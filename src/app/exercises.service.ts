@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Exercise } from './models/exercise';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class ExercisesService {
  
  getExercises(): Observable<any> {
    return this.http.get(this.url);
+ }
+
+ editExercise(exercise: Exercise): Observable<any> {
+  return this.http.patch(`${this.url}/${exercise.id}`, exercise);
  }
 
  deleteExercise(id: number): Observable<any> {

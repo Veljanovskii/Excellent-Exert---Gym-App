@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -15,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule  } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule  } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +25,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
 import { DeleteExerciseComponent } from './exercise/delete-exercise/delete-exercise.component';
+import { EditExerciseComponent } from './exercise/edit-exercise/edit-exercise.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +35,13 @@ import { DeleteExerciseComponent } from './exercise/delete-exercise/delete-exerc
     SidenavComponent,
     HomeComponent,
     DeleteExerciseComponent,
+    EditExerciseComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -50,7 +55,8 @@ import { DeleteExerciseComponent } from './exercise/delete-exercise/delete-exerc
     MatInputModule,
     MatSortModule,
     MatButtonModule,
-    MatDialogModule 
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

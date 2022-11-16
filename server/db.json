@@ -3,15 +3,17 @@
     {
       "id": 1231,
       "name": "Deadlift Upright Row",
-      "category": 2,
+      "category": "3",
       "unit": "s",
-      "numberOfSets": 3,
+      "numberOfSets": "3",
       "numberOfReps": 45,
       "primaryMuscles": "Hamstrings, glutes, upper back",
-      "description": ["1. Stand up with your feet shoulder-width apart and hold a set of dumbbells in front of your thighs.",
-      "2. Push your hips back and lower the dumbbells until your torso is parallel to the floor.",
-      "3. Stand up and pull the dumbbells toward your chest, keeping your arms a little wider than shoulder-width apart.",
-      "4. Repeat until the set is complete."],
+      "description": [
+        "1. Stand up with your feet shoulder-width apart and hold a set of dumbbells in front of your thighs.",
+        "2. Push your hips back and lower the dumbbells until your torso is parallel to the floor.",
+        "3. Stand up and pull the dumbbells toward your chest, keeping your arms a little wider than shoulder-width apart.",
+        "4. Repeat until the set is complete."
+      ],
       "image": "assets/exercises/DeadliftUprightRow.gif"
     },
     {
@@ -22,10 +24,12 @@
       "numberOfSets": 3,
       "numberOfReps": 10,
       "primaryMuscles": "Quads",
-      "description": ["1. Place a step or a box behind you and stand up tall.",
-      "2. Position your right foot on top of the step, bend your knees and lower the hips until your left thigh is parallel to the floor.",
-      "3. Return to the starting position and repeat.",
-      "4. Switch legs."],
+      "description": [
+        "1. Place a step or a box behind you and stand up tall.",
+        "2. Position your right foot on top of the step, bend your knees and lower the hips until your left thigh is parallel to the floor.",
+        "3. Return to the starting position and repeat.",
+        "4. Switch legs."
+      ],
       "image": "assets/exercises/BulgarianSplitSquat.gif"
     },
     {
@@ -36,9 +40,11 @@
       "numberOfSets": 2,
       "numberOfReps": 10,
       "primaryMuscles": "Abs, obliques, glutes, hips, legs",
-      "description": ["1. Start with your body in plank position and your hands slightly wider than shoulder-width apart.",
-      "2. Bring your left knee up toward the right elbow and then quickly alternate legs.",
-      "3. Continue alternating legs until the set is complete."],
+      "description": [
+        "1. Start with your body in plank position and your hands slightly wider than shoulder-width apart.",
+        "2. Bring your left knee up toward the right elbow and then quickly alternate legs.",
+        "3. Continue alternating legs until the set is complete."
+      ],
       "image": "assets/exercises/MountainClimberTwist.gif"
     },
     {
@@ -49,23 +55,27 @@
       "numberOfSets": 3,
       "numberOfReps": 30,
       "primaryMuscles": "Abs, obliques",
-      "description": ["1. Start in a low plank position with your body in a straight line, your elbows bent and under your shoulders, and your feet hip-width apart.",
-      "2. Rotate your hips to the right and dip your body almost to the floor.",
-      "3. Return to the starting position and repeat on the left side. Keep alternating sides until the set is complete."],
+      "description": [
+        "1. Start in a low plank position with your body in a straight line, your elbows bent and under your shoulders, and your feet hip-width apart.",
+        "2. Rotate your hips to the right and dip your body almost to the floor.",
+        "3. Return to the starting position and repeat on the left side. Keep alternating sides until the set is complete."
+      ],
       "image": "assets/exercises/PlankHipDips.gif"
     },
     {
       "id": 1235,
       "name": "Plie Squat Scoop Up",
       "category": 3,
-      "unit": "rep",        
+      "unit": "rep",
       "numberOfSets": 3,
       "numberOfReps": 12,
       "primaryMuscles": "Glutes, inner thighs, chest",
-      "description": ["1. Stand with your feet in a wide stance, your toes pointing out to the sides, and hold a dumbbell in each hand with your palms facing up.",
-      "2. Squat until your thighs are parallel to the floor, and lower the dumbbells close to your knees.",
-      "3. Stand up and bring the dumbbells together in front of your chest.",
-      "4. Repeat until the set is complete."],
+      "description": [
+        "1. Stand with your feet in a wide stance, your toes pointing out to the sides, and hold a dumbbell in each hand with your palms facing up.",
+        "2. Squat until your thighs are parallel to the floor, and lower the dumbbells close to your knees.",
+        "3. Stand up and bring the dumbbells together in front of your chest.",
+        "4. Repeat until the set is complete."
+      ],
       "image": "assets/exercises/PlieSquatScoopUp.gif"
     },
     {
@@ -76,10 +86,12 @@
       "numberOfSets": 3,
       "numberOfReps": 8,
       "primaryMuscles": "Quads, glutes, hamstrings",
-      "description": ["1. Stand with your feet shoulder-width apart and with one foot forward and the other foot behind you.",
-      "2. Jump and switch leg positions.",
-      "3. Jump again, landing with your feet a little wider than shoulder-width apart, and squat.",
-      "4. Jump to return to the starting position and repeat the exercise."],
+      "description": [
+        "1. Stand with your feet shoulder-width apart and with one foot forward and the other foot behind you.",
+        "2. Jump and switch leg positions.",
+        "3. Jump again, landing with your feet a little wider than shoulder-width apart, and squat.",
+        "4. Jump to return to the starting position and repeat the exercise."
+      ],
       "image": "assets/exercises/FlutterKickSquats.gif"
     },
     {
@@ -90,9 +102,11 @@
       "numberOfSets": 1,
       "numberOfReps": 45,
       "primaryMuscles": "Shoulders, arms",
-      "description": ["1. Stand up straight with your knees slightly bent, your feet shoulder-width apart and your arms stretched horizontally to the sides.",
-      "2. Cross your arms at the front and then quickly bring them back as far as you can.",
-      "3. Repeat this back and forth movement until the set is complete."],
+      "description": [
+        "1. Stand up straight with your knees slightly bent, your feet shoulder-width apart and your arms stretched horizontally to the sides.",
+        "2. Cross your arms at the front and then quickly bring them back as far as you can.",
+        "3. Repeat this back and forth movement until the set is complete."
+      ],
       "image": "assets/exercises/ArmSwings.gif"
     },
     {
@@ -103,11 +117,31 @@
       "numberOfSets": 3,
       "numberOfReps": 12,
       "primaryMuscles": "Anterior deltoid (shoulders)",
-      "description": ["1. Grab a set of dumbbells and stand straight.",
-      "2. With your palms facing down, lift one dumbbell until your arm is slightly above parallel to the floor.",
-      "3. Pause and then slowly lower the arm back to the starting position.",
-      "4. Repeat with the opposite arm and keep alternating sides until the set is complete."],
+      "description": [
+        "1. Grab a set of dumbbells and stand straight.",
+        "2. With your palms facing down, lift one dumbbell until your arm is slightly above parallel to the floor.",
+        "3. Pause and then slowly lower the arm back to the starting position.",
+        "4. Repeat with the opposite arm and keep alternating sides until the set is complete."
+      ],
       "image": "assets/exercises/DumbbellFrontRaise.gif"
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "caption": "Full body"
+    },
+    {
+      "id": 2,
+      "caption": "Upper body"
+    },
+    {
+      "id": 3,
+      "caption": "Core"
+    },
+    {
+      "id": 4,
+      "caption": "Lower body"
     }
   ]
 }

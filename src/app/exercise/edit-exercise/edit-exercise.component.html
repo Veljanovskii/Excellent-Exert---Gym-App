@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Edit Exercise</h1>
+<div mat-dialog-content>
+  <form [formGroup]="editForm" (ngSubmit)="editExercise()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="editForm.controls['name'].invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select matInput formControlName="category">
+          <mat-option value="2">Second option</mat-option>
+          <mat-option value="3">Third option</mat-option>
+          <mat-option value="4">Fourth option</mat-option>
+      </mat-select>
+      <mat-error *ngIf="editForm.controls['category'].invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Number of Sets</mat-label>
+      <input matInput formControlName="numberOfSets">
+      <mat-error *ngIf="editForm.controls['numberOfSets'].invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Number of Reps</mat-label>
+      <input matInput formControlName="numberOfReps">
+      <mat-error *ngIf="editForm.controls['numberOfReps'].invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Primary Muscles</mat-label>
+        <input matInput formControlName="primaryMuscles">
+        <mat-error *ngIf="editForm.controls['primaryMuscles'].invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!editForm.valid" [mat-dialog-close]="true">Submit</button>
+      <a mat-button [mat-dialog-close]>Cancel</a>
+    </div>
+
+  </form>
+</div>
