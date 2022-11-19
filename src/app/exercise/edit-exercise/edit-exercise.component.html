@@ -25,6 +25,15 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
+      <mat-label>Unit</mat-label>
+      <mat-select matInput formControlName="unit">
+          <mat-option value="rep">Repetitions</mat-option>
+          <mat-option value="s">Seconds</mat-option>
+      </mat-select>
+      <mat-error *ngIf="editForm.controls['unit'].invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
       <mat-label>Number of Reps</mat-label>
       <input matInput formControlName="numberOfReps">
       <mat-error *ngIf="editForm.controls['numberOfReps'].invalid">{{getErrorMessage()}}</mat-error>

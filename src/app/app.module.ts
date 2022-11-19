@@ -26,6 +26,7 @@ import { SidenavComponent } from './navigation/sidenav/sidenav.component';
 import { HomeComponent } from './home/home.component';
 import { DeleteExerciseComponent } from './exercise/delete-exercise/delete-exercise.component';
 import { EditExerciseComponent } from './exercise/edit-exercise/edit-exercise.component';
+import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { EditExerciseComponent } from './exercise/edit-exercise/edit-exercise.co
     HomeComponent,
     DeleteExerciseComponent,
     EditExerciseComponent,
+    AddExerciseComponent,
   ],
   imports: [
     BrowserModule,

@@ -25,6 +25,7 @@ export class EditExerciseComponent implements OnInit {
         name: new FormControl(this.exercise.name, [Validators.required]),
         category: new FormControl(this.exercise.category, [Validators.required]),
         numberOfSets: new FormControl(this.exercise.numberOfSets, [Validators.required]),
+        unit: new FormControl(this.exercise.unit, [Validators.required]),
         numberOfReps: new FormControl(this.exercise.numberOfReps, [Validators.required]),        
         primaryMuscles: new FormControl(this.exercise.primaryMuscles, [Validators.required]),
         description: new FormControl(this.exercise.description)
@@ -35,6 +36,7 @@ export class EditExerciseComponent implements OnInit {
       this.exercise.name = this.editForm.controls['name'].value;
       this.exercise.category = this.editForm.controls['category'].value;
       this.exercise.numberOfSets = this.editForm.controls['numberOfSets'].value;
+      this.exercise.unit = this.editForm.controls['unit'].value;
       this.exercise.numberOfReps = this.editForm.controls['numberOfReps'].value;
       this.exercise.primaryMuscles = this.editForm.controls['primaryMuscles'].value;
       this.exercise.description = this.editForm.controls['description'].value;
@@ -45,4 +47,5 @@ export class EditExerciseComponent implements OnInit {
     getErrorMessage() {
       return 'You must enter a value';
     }
+
 }

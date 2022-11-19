@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
+import { AddExerciseComponent } from '../add-exercise/add-exercise.component';
 import { EditExerciseComponent } from '../edit-exercise/edit-exercise.component';
 import { DeleteExerciseComponent } from '../delete-exercise/delete-exercise.component';
 
@@ -31,6 +32,7 @@ export class ExercisesComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private exercisesService: ExercisesService,
+    public dialogAdd: MatDialog,
     public dialogEdit: MatDialog,
     public dialogDelete: MatDialog) { }
 
@@ -52,6 +54,18 @@ export class ExercisesComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openAddDialog(): void {
+    const dialogAddRef = this.dialogAdd.open(AddExerciseComponent, {
+      width: '600px',
+    });
+
+    dialogAddRef.afterClosed().subscribe(result => {
+      if(result == true) {
+        // DO STUFF
+      }
+    });
   }
 
   openEditDialog(exercise: Exercise): void {

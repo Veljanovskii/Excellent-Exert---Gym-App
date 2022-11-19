@@ -16,6 +16,10 @@ export class ExercisesService {
    return this.http.get(this.url);
  }
 
+ addExercise(exercise: Exercise): Observable<any> {
+  return this.http.post(this.url, exercise);
+ }
+
  editExercise(exercise: Exercise): Observable<any> {
   return this.http.patch(`${this.url}/${exercise.id}`, exercise);
  }
