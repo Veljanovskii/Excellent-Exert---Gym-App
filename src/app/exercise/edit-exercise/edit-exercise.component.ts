@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Exercise } from 'src/app/models/exercise';
-import { ExercisesService } from 'src/app/exercises.service';
+import { ExercisesService } from 'src/app/services/exercises.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-edit-exercise',
@@ -41,7 +42,7 @@ export class EditExerciseComponent implements OnInit {
       this.exercise.primaryMuscles = this.editForm.controls['primaryMuscles'].value;
       this.exercise.description = this.editForm.controls['description'].value;
     
-      this.exercisesService.editExercise(this.exercise).subscribe();
+      this.exercisesService.editExercise(this.exercise).pipe(take(1)).subscribe();
     }
   
     getErrorMessage() {

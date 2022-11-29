@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { DeleteExerciseComponent } from './exercise/delete-exercise/delete-exercise.component';
 import { EditExerciseComponent } from './exercise/edit-exercise/edit-exercise.component';
 import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
+import { PopularityComponent } from './popularity/popularity/popularity.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.compo
     DeleteExerciseComponent,
     EditExerciseComponent,
     AddExerciseComponent,
+    PopularityComponent,
   ],
   imports: [
     BrowserModule,

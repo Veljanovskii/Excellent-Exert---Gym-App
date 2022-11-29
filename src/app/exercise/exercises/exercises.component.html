@@ -1,6 +1,6 @@
   <mat-form-field appearance="standard">
    <mat-label>Filter</mat-label>
-   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Deadlift" #input>
+   <input matInput (keyup)="applyFilter(input.value)" placeholder="Ex. Deadlift" #input>
  </mat-form-field>
  
  <div class="mat-elevation-z8">
@@ -43,6 +43,11 @@
       <td mat-cell *matCellDef="let row"> {{row.primaryMuscles}} </td>
      </ng-container>
  
+     <ng-container matColumnDef="popularity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Popularity </th>
+      <td mat-cell *matCellDef="let row"><app-popularity [value]="row.popularity" [exerciseName]="row.name" (mouseOver)="processMouseOver($event)"></app-popularity> </td>
+     </ng-container>
+     
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element;" [attr.colspan]="displayedColumns.length">
         <div class="element-detail"
@@ -80,3 +85,4 @@
 
  <a mat-button class="addExercise" (click)="openAddDialog()"><i class="material-icons">add</i>Add new exercise</a>
  
+ <p style="display: flex; justify-content: flex-end" *ngIf="popularityInfo?.isMouseOver">Popularity of {{popularityInfo?.exerciseName}} is {{popularityInfo?.value}} / 5.0.</p>

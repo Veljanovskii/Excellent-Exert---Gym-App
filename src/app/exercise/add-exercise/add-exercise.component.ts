@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from 'src/app/models/exercise';
-import { ExercisesService } from 'src/app/exercises.service';
+import { ExercisesService } from 'src/app/services/exercises.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-add-exercise',
@@ -36,7 +37,7 @@ export class AddExerciseComponent implements OnInit {
     this.exercise.primaryMuscles = this.addForm.controls['primaryMuscles'].value;
     this.exercise.description = this.addForm.controls['description'].value;
   
-    this.exercisesService.addExercise(this.exercise).subscribe();
+    this.exercisesService.addExercise(this.exercise).pipe(take(1)).subscribe();
   }
 
   getErrorMessage() {

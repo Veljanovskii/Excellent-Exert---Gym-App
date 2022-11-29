@@ -1,0 +1,20 @@
+:host {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.value {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    background-color: #7b1fa2;
+}

@@ -11,9 +11,10 @@
     <mat-form-field appearance="fill">
         <mat-label>Category</mat-label>
         <mat-select matInput formControlName="category">
-            <mat-option value="2">Second option</mat-option>
-            <mat-option value="3">Third option</mat-option>
-            <mat-option value="4">Fourth option</mat-option>
+          <mat-option value="1">Full body</mat-option>
+          <mat-option value="2">Upper body</mat-option>
+          <mat-option value="3">Core</mat-option>
+          <mat-option value="4">Lower body</mat-option>
         </mat-select>
         <mat-error *ngIf="addForm.controls['category'].invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ExercisesService } from 'src/app/exercises.service';
+import { ExercisesService } from 'src/app/services/exercises.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-delete-exercise',
@@ -20,6 +21,6 @@ export class DeleteExerciseComponent implements OnInit {
   }
 
   deleteExercise() {
-    this.exercisesService.deleteExercise(this.index).subscribe();
+    this.exercisesService.deleteExercise(this.index).pipe(take(1)).subscribe();
   }
 }
