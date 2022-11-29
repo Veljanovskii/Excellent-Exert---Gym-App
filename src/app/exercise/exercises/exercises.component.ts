@@ -57,7 +57,7 @@ export class ExercisesComponent implements OnInit, OnDestroy {
     'primaryMuscles',
     'popularity',
   ];
-  dataSource: MatTableDataSource<Exercise>;
+  dataSource!: MatTableDataSource<Exercise>;
   expandedElement!: Exercise | null;
   popularityInfo!: PopularityInfo;
   private unsubscribeSubject$: Subject<any> = new Subject<any>();
