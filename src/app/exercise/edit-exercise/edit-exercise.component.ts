@@ -4,6 +4,8 @@ import { ExercisesService } from 'src/app/services/exercises.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { take } from 'rxjs';
+import { Category } from 'src/app/models/category';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'app-edit-exercise',
@@ -13,19 +15,24 @@ import { take } from 'rxjs';
 export class EditExerciseComponent implements OnInit {
   editForm!: FormGroup;
   exercise!: Exercise;
+  private categories!: Category[];
 
   constructor(
     private exercisesService: ExercisesService,
     public dialogRef: MatDialogRef<EditExerciseComponent>,
+    private categoriesService: CategoriesService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.exercise = data.exercise;
+    this.categoriesService.categories$.subscribe((categories) => {
+      this.categories = categories;
+    });
   }
 
   ngOnInit(): void {
     this.editForm = new FormGroup({
       name: new FormControl(this.exercise.name, [Validators.required]),
-      category: new FormControl(this.exercise.category, [Validators.required]),
+      category: new FormControl(this.resolveCategory(), [Validators.required]),
       numberOfSets: new FormControl(this.exercise.numberOfSets, [
         Validators.required,
       ]),
@@ -38,6 +45,13 @@ export class EditExerciseComponent implements OnInit {
       ]),
       description: new FormControl(this.exercise.description),
     });
+  }
+
+  resolveCategory(): string {
+    const id = this.categories
+      .find((category) => category.caption == this.exercise.category)
+      ?.id.toString();
+    return id ?? '';
   }
 
   editExercise() {

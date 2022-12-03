@@ -1,7 +1,7 @@
 export interface Exercise {
   id: number;
   name: string;
-  category: number;
+  category: number | string;
   unit: string;
   numberOfSets: number;
   numberOfReps: number;
