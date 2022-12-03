@@ -7,7 +7,7 @@ node.js: `v18.12.1`
 npm: `v8.19.2`
 Angular: `13.3.3`
 
-# How to run
+### How to run
 - `git pull`
 - `ng serve --open`
 - `npm run server`
