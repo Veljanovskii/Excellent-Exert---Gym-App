@@ -31,6 +31,7 @@ import {
 } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { PopularityInfo } from 'src/app/popularity/popularity/popularity.component';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-exercises',
@@ -58,6 +59,7 @@ export class ExercisesComponent implements OnInit, OnDestroy {
     'popularity',
   ];
   dataSource!: MatTableDataSource<Exercise>;
+  private categories!: Category[];
   expandedElement!: Exercise | null;
   popularityInfo!: PopularityInfo;
   private unsubscribeSubject$: Subject<any> = new Subject<any>();
@@ -79,17 +81,8 @@ export class ExercisesComponent implements OnInit, OnDestroy {
     )
       .pipe(
         map(([exercises, categories]) => {
-          const exercisesWithCategories = exercises.map(
-            (exercise) =>
-              ({
-                ...exercise,
-                category:
-                  categories.find(
-                    (category) =>
-                      category.id === parseInt(exercise.category.toString())
-                  )?.caption ?? exercise.category,
-              } as Exercise)
-          );
+          const exercisesWithCategories = this.determineExercisesWithCategories(exercises, categories);
+          this.categories = categories;
           const dataSource = new MatTableDataSource(exercisesWithCategories);
           dataSource.paginator = this.paginator;
           dataSource.sort = this.sort;
@@ -108,8 +101,7 @@ export class ExercisesComponent implements OnInit, OnDestroy {
         takeUntil(this.unsubscribeSubject$)
       )
       .subscribe((newData) => {
-        console.log(newData);
-        this.dataSource.data = newData;
+        this.dataSource.data = this.determineExercisesWithCategories(newData, this.categories);
         this.cdr.detectChanges();
       });
   }
@@ -117,6 +109,19 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribeSubject$.next(true);
     this.unsubscribeSubject$.complete();
+  }
+
+  determineExercisesWithCategories(exercises: Exercise[], categories: Category[]): Exercise[] {
+    return exercises.map(
+      (exercise) =>
+        ({
+          ...exercise,
+          category:
+            categories.find(
+              (category) => category.id === exercise.category
+            )?.caption ?? exercise.category,
+        } as Exercise)
+    );
   }
 
   applyFilter(value: string) {

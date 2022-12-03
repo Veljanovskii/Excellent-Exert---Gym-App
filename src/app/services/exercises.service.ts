@@ -28,6 +28,7 @@ export class ExercisesService {
   }
 
   editExercise(exercise: Exercise): Observable<any> {
+    this.exercisesChanged$.next(true);
     return this.http.patch(`${this.url}/${exercise.id}`, exercise);
   }
 

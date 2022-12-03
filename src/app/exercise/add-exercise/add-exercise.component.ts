@@ -30,12 +30,12 @@ export class AddExerciseComponent implements OnInit {
 
   addExercise() {
     this.exercise.name = this.addForm.controls['name'].value;
-    this.exercise.category = this.addForm.controls['category'].value;
-    this.exercise.numberOfSets = this.addForm.controls['numberOfSets'].value;
+    this.exercise.category = parseInt(this.addForm.controls['category'].value);
+    this.exercise.numberOfSets = parseInt(this.addForm.controls['numberOfSets'].value);
     this.exercise.unit = this.addForm.controls['unit'].value;
-    this.exercise.numberOfReps = this.addForm.controls['numberOfReps'].value;
+    this.exercise.numberOfReps = parseInt(this.addForm.controls['numberOfReps'].value);
     this.exercise.primaryMuscles = this.addForm.controls['primaryMuscles'].value;
-    this.exercise.description = this.addForm.controls['description'].value;
+    this.exercise.description = this.addForm.controls['description'].value.split(". ");
   
     this.exercisesService.addExercise(this.exercise).pipe(take(1)).subscribe();
   }
