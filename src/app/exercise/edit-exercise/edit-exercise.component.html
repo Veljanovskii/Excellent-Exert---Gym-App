@@ -46,14 +46,14 @@
         <mat-error *ngIf="editForm.controls['primaryMuscles'].invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="descriptionField">
         <mat-label>Textarea</mat-label>
-        <textarea matInput formControlName="description"></textarea>
+        <textarea matInput formControlName="description" class="description"></textarea>
       </mat-form-field>
 
     <div mat-dialog-actions>
-      <button mat-button type="submit" [disabled]="!editForm.valid" [mat-dialog-close]="true">Submit</button>
-      <a mat-button [mat-dialog-close]>Cancel</a>
+      <button mat-button class="editExercise" type="submit" [disabled]="!editForm.valid" [mat-dialog-close]="true">Submit</button>
+      <a mat-button class="normalButton" [mat-dialog-close]>Cancel</a>
     </div>
 
   </form>

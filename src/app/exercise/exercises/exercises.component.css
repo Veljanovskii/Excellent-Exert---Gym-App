@@ -25,10 +25,12 @@ table {
 
   .editExercise {
     background-color: #FF9800;
+    margin-left: 2%;
   }
 
   .deleteExercise {
     background-color: #F44336;
+    margin-left: 2%;
   }
 
   .mat-column-image {
