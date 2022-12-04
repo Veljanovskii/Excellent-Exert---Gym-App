@@ -6,6 +6,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-exercise',
@@ -19,6 +20,7 @@ export class EditExerciseComponent implements OnInit {
 
   constructor(
     private exercisesService: ExercisesService,
+    private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<EditExerciseComponent>,
     private categoriesService: CategoriesService,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -72,6 +74,14 @@ export class EditExerciseComponent implements OnInit {
       : description.split('. ');
 
     this.exercisesService.editExercise(this.exercise).pipe(take(1)).subscribe();
+  }
+
+  openSnackBar() {    
+    this._snackBar.open('Exercise edited successfully', 'Okay', { 
+      horizontalPosition: 'start', 
+      verticalPosition: 'bottom',
+      duration: 4000,
+      panelClass: ['snackbar'] });
   }
 
   getErrorMessage() {

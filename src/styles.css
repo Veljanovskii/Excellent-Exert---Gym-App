@@ -6,3 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .normalButton {    
     background-color: gray;
 }
+
+.snackbar {
+    background: #2196F3;
+  }

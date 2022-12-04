@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ExercisesService } from 'src/app/services/exercises.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { take } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-delete-exercise',
@@ -13,11 +14,20 @@ export class DeleteExerciseComponent implements OnInit {
   index!: number;
 
   constructor(private exercisesService: ExercisesService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private _snackBar: MatSnackBar) {
       this.index = data.index;
      }
 
   ngOnInit(): void {
+  }
+  
+  openSnackBar() {
+    this._snackBar.open('Exercise deleted successfully', 'Okay', { 
+      horizontalPosition: 'start', 
+      verticalPosition: 'bottom',
+      duration: 4000,
+      panelClass: ['snackbar'] });
   }
 
   deleteExercise() {

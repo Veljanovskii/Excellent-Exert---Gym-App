@@ -4,7 +4,7 @@ import { ExercisesService } from 'src/app/services/exercises.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { start } from 'repl';
+
 @Component({
   selector: 'app-add-exercise',
   templateUrl: './add-exercise.component.html',
@@ -43,7 +43,11 @@ export class AddExerciseComponent implements OnInit {
   }
 
   openSnackBar() {
-    this._snackBar.open('Lmao', 'Okay', { horizontalPosition: 'start', verticalPosition: 'bottom' });
+    this._snackBar.open('Exercise added successfully', 'Okay', { 
+      horizontalPosition: 'start', 
+      verticalPosition: 'bottom',
+      duration: 4000,
+      panelClass: ['snackbar'] });
   }
 
   getErrorMessage() {
