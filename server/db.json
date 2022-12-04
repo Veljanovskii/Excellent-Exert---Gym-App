@@ -69,7 +69,7 @@
     {
       "id": 1235,
       "name": "Plie Squat Scoop Up",
-      "category": 3,
+      "category": 1,
       "unit": "rep",
       "numberOfSets": 3,
       "numberOfReps": 12,
@@ -86,7 +86,7 @@
     {
       "id": 1236,
       "name": "Flutter Kick Squats",
-      "category": 2,
+      "category": 4,
       "unit": "rep",
       "numberOfSets": 3,
       "numberOfReps": 8,
@@ -103,7 +103,7 @@
     {
       "id": 1237,
       "name": "Arm Swings",
-      "category": 1,
+      "category": 2,
       "unit": "s",
       "numberOfSets": 1,
       "numberOfReps": 50,

@@ -16,3 +16,21 @@
     width: 250px;
     margin: 2%;
   }
+
+  .addExercise {
+    margin-left: 1%;
+    background-color: blue;
+  }
+
+  .descriptionField {
+    width: 524px;
+  }
+
+  .description {
+    resize: none;
+    height: 100px;
+  }
+  
+  .mat-dialog-actions {
+    margin: 1%;
+  }

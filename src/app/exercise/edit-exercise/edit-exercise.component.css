@@ -10,9 +10,29 @@
 
   .mat-dialog-content {
     overflow-y: hidden !important;
+    margin-top: 2%;
+    margin-bottom: 2%;
   }
 
   mat-form-field {
     width: 250px;
     margin: 2%;
+  }
+
+  .editExercise {
+    margin-left: 2%;
+    background-color: #FF9800;
+  }
+
+  .descriptionField {
+    width: 524px;
+  }
+
+  .description {
+    resize: none;
+    height: 100px;
+  }
+
+  .mat-dialog-actions {
+    margin: 1%;
   }

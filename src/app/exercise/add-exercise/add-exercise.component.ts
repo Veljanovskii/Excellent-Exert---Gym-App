@@ -3,7 +3,8 @@ import { Exercise } from 'src/app/models/exercise';
 import { ExercisesService } from 'src/app/services/exercises.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { take } from 'rxjs';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { start } from 'repl';
 @Component({
   selector: 'app-add-exercise',
   templateUrl: './add-exercise.component.html',
@@ -14,7 +15,8 @@ export class AddExerciseComponent implements OnInit {
   addForm!: FormGroup;
   exercise = <Exercise>{};
 
-  constructor(private exercisesService: ExercisesService) { }
+  constructor(private exercisesService: ExercisesService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.addForm = new FormGroup({
@@ -38,6 +40,10 @@ export class AddExerciseComponent implements OnInit {
     this.exercise.description = this.addForm.controls['description'].value.split(". ");
   
     this.exercisesService.addExercise(this.exercise).pipe(take(1)).subscribe();
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Lmao', 'Okay', { horizontalPosition: 'start', verticalPosition: 'bottom' });
   }
 
   getErrorMessage() {
