@@ -29,6 +29,8 @@ import { DeleteExerciseComponent } from './exercise/delete-exercise/delete-exerc
 import { EditExerciseComponent } from './exercise/edit-exercise/edit-exercise.component';
 import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
 import { PopularityComponent } from './popularity/popularity/popularity.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './exercise/state';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { PopularityComponent } from './popularity/popularity/popularity.componen
     PopularityComponent,
   ],
   imports: [
+    StoreModule.forRoot(reducers),
     BrowserModule,
     AppRoutingModule,
     FormsModule,

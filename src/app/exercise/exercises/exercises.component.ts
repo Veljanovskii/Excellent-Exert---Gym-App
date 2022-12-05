@@ -32,6 +32,8 @@ import {
 import { CategoriesService } from 'src/app/services/categories.service';
 import { PopularityInfo } from 'src/app/popularity/popularity/popularity.component';
 import { Category } from 'src/app/models/category';
+import { Dispatcher } from 'src/app/services/dispatcher.service';
+import { ExerciseActions } from '../state/exercise.actions';
 
 @Component({
   selector: 'app-exercises',
@@ -71,7 +73,8 @@ export class ExercisesComponent implements OnInit, OnDestroy {
     private exercisesService: ExercisesService,
     private categoriesService: CategoriesService,
     public matDialog: MatDialog,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dispatcher: Dispatcher
   ) {}
 
   ngOnInit(): void {
@@ -125,6 +128,18 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   }
 
   applyFilter(value: string) {
+    this.dispatcher.dispatch(ExerciseActions.loadExercisesSuccess({exercises: [{
+      category: 1,
+      id: 1,
+      name: "a",
+      unit: "s",
+      image: "12",
+      numberOfReps: 1,
+      numberOfSets: 1,
+      primaryMuscles: "a"
+
+
+    }]}));
     this.dataSource.filter = value.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
