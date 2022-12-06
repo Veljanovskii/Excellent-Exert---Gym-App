@@ -7,3 +7,8 @@
     background-color: #F44336;
     max-height: none;
   }
+
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
