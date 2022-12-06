@@ -4,8 +4,8 @@ import { createAction, props } from '@ngrx/store';
 export namespace ExerciseActions {
   export const loadExercises = createAction('[Exercise] Load Exercises');
 
-  export const updateExercise = createAction(
-    '[Exercise] Update Exercise',
+  export const editExercise = createAction(
+    '[Exercise] Edit Exercise',
     props<{ exercise: Exercise }>()
   );
 
@@ -33,13 +33,13 @@ export namespace ExerciseActions {
     props<{ error: string }>()
   );
   
-  export const updateExerciseSuccess = createAction(
-    '[Exercise API] Update Exercise Success',
+  export const editExerciseSuccess = createAction(
+    '[Exercise API] Edit Exercise Success',
     props<{ exercise: Exercise }>()
   );
   
-  export const updateExerciseFailure = createAction(
-    '[Exercise API] Update Exercise Fail',
+  export const editExerciseFailure = createAction(
+    '[Exercise API] Edit Exercise Fail',
     props<{ error: string }>()
   );
   

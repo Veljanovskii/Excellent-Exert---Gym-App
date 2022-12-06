@@ -128,18 +128,6 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   }
 
   applyFilter(value: string) {
-    this.dispatcher.dispatch(ExerciseActions.loadExercisesSuccess({exercises: [{
-      category: 1,
-      id: 1,
-      name: "a",
-      unit: "s",
-      image: "12",
-      numberOfReps: 1,
-      numberOfSets: 1,
-      primaryMuscles: "a"
-
-
-    }]}));
     this.dataSource.filter = value.trim().toLowerCase();
 
     if (this.dataSource.paginator) {

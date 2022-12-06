@@ -22,9 +22,9 @@ export class ExercisesService {
   }
 
   addExercise(exercise: Exercise): Observable<any> {
-    exercise.popularity = 2.5;
+    const updatedExercise: Exercise = {...exercise, popularity: 2.5};
     this.exercisesChanged$.next(true);
-    return this.http.post(this.url, exercise);
+    return this.http.post(this.url, updatedExercise);
   }
 
   editExercise(exercise: Exercise): Observable<any> {

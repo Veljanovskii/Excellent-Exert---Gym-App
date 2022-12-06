@@ -13,9 +13,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { MatSortModule  } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule  } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
@@ -29,8 +29,12 @@ import { DeleteExerciseComponent } from './exercise/delete-exercise/delete-exerc
 import { EditExerciseComponent } from './exercise/edit-exercise/edit-exercise.component';
 import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
 import { PopularityComponent } from './popularity/popularity/popularity.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './exercise/state';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import { State } from './exercise/state';
+import { exerciseReducer } from './exercise/state/exercise.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { ExerciseEffects } from './exercise/state/exercise.effects';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { reducers } from './exercise/state';
     PopularityComponent,
   ],
   imports: [
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({
+      exercises: exerciseReducer,
+    } as ActionReducerMap<State>),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([ExerciseEffects]),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -68,6 +76,6 @@ import { reducers } from './exercise/state';
     MatSnackBarModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
