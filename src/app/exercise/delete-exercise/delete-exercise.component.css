@@ -5,4 +5,5 @@
   .deleteExercise {
     margin-left: 2%;
     background-color: #F44336;
+    max-height: none;
   }

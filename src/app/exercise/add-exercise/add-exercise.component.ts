@@ -44,7 +44,7 @@ export class AddExerciseComponent implements OnInit {
 
   openSnackBar() {
     this._snackBar.open('Exercise added successfully', 'Okay', { 
-      horizontalPosition: 'start', 
+      horizontalPosition: 'end', 
       verticalPosition: 'bottom',
       duration: 4000,
       panelClass: ['snackbar'] });

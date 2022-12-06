@@ -10,6 +10,7 @@
 
   .mat-dialog-content {
     overflow-y: hidden !important;
+    max-height: none;
   }
 
   mat-form-field {

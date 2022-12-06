@@ -24,7 +24,7 @@ export class DeleteExerciseComponent implements OnInit {
   
   openSnackBar() {
     this._snackBar.open('Exercise deleted successfully', 'Okay', { 
-      horizontalPosition: 'start', 
+      horizontalPosition: 'end', 
       verticalPosition: 'bottom',
       duration: 4000,
       panelClass: ['snackbar'] });
