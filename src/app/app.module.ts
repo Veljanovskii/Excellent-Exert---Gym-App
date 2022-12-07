@@ -30,11 +30,13 @@ import { EditExerciseComponent } from './exercise/edit-exercise/edit-exercise.co
 import { AddExerciseComponent } from './exercise/add-exercise/add-exercise.component';
 import { PopularityComponent } from './popularity/popularity/popularity.component';
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
-import { State } from './exercise/state';
+import { State } from './index';
 import { exerciseReducer } from './exercise/state/exercise.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ExerciseEffects } from './exercise/state/exercise.effects';
+import { categoryReducer } from './category/state/category.reducer';
+import { CategoryEffects } from './category/state/category.effects';
 
 @NgModule({
   declarations: [
@@ -50,10 +52,11 @@ import { ExerciseEffects } from './exercise/state/exercise.effects';
   ],
   imports: [
     StoreModule.forRoot({
-      exercises: exerciseReducer,
+      exercise: exerciseReducer,
+      category: categoryReducer
     } as ActionReducerMap<State>),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([ExerciseEffects]),
+    EffectsModule.forRoot([ExerciseEffects, CategoryEffects]),
     BrowserModule,
     AppRoutingModule,
     FormsModule,

@@ -21,4 +21,14 @@ export class CategoriesService {
         return EMPTY;
       })
     );
+
+
+    getCategories(): Observable<Category[]> {
+      return this.http.get<Category[]>(this.url).pipe(
+        catchError((err: HttpErrorResponse) => {
+          console.log(err.message);
+          return EMPTY;
+        })
+      );
+    }
 }

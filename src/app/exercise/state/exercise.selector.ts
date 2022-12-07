@@ -1,9 +1,5 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ExerciseState } from './exercise.reducer';
-
-export interface State {
-    exercises: ExerciseState;
-}
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { ExerciseState } from "./exercise.reducer";
 
 const getExerciseFeatureState = createFeatureSelector<ExerciseState>('exercise');
 
@@ -12,7 +8,7 @@ export const getExercises = createSelector(
     state => state.exercises
 );
 
-export const getError = createSelector(
+export const getExerciseError = createSelector(
     getExerciseFeatureState,
     state => state.error
 );

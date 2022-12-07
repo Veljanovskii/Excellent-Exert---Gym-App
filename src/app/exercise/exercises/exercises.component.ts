@@ -33,7 +33,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { PopularityInfo } from 'src/app/popularity/popularity/popularity.component';
 import { Category } from 'src/app/models/category';
 import { Dispatcher } from 'src/app/services/dispatcher.service';
-import { ExerciseActions } from '../state/exercise.actions';
+import { CategoryActions } from 'src/app/category/state/category.actions';
 
 @Component({
   selector: 'app-exercises',
@@ -78,6 +78,7 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.dispatcher.dispatch(CategoryActions.loadCategories());
     zip(
       this.exercisesService.getExercises(),
       this.categoriesService.categories$
