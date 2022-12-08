@@ -1,11 +1,10 @@
 import {
   Component,
   ViewChild,
-  OnInit,
   ChangeDetectorRef,
   OnDestroy,
+  AfterViewInit,
 } from '@angular/core';
-import { ExercisesService } from 'src/app/services/exercises.service';
 import { Exercise } from 'src/app/models/exercise';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -21,12 +20,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddExerciseComponent } from '../add-exercise/add-exercise.component';
 import { EditExerciseComponent } from '../edit-exercise/edit-exercise.component';
 import { DeleteExerciseComponent } from '../delete-exercise/delete-exercise.component';
-import { debounceTime, map, Subject, switchMap, takeUntil, zip } from 'rxjs';
-import { CategoriesService } from 'src/app/services/categories.service';
+import { map, Subject, takeUntil, zip } from 'rxjs';
 import { PopularityInfo } from 'src/app/popularity/popularity/popularity.component';
 import { Category } from 'src/app/models/category';
-import { Dispatcher } from 'src/app/services/dispatcher.service';
-import { CategoryActions } from 'src/app/category/state/category.actions';
+import { CategorySelector } from 'src/app/category/state/category.selector';
+import { ExerciseSelector } from '../state/exercise.selector';
 
 @Component({
   selector: 'app-exercises',
@@ -43,7 +41,7 @@ import { CategoryActions } from 'src/app/category/state/category.actions';
     ]),
   ],
 })
-export class ExercisesComponent implements OnInit, OnDestroy {
+export class ExercisesComponent implements AfterViewInit, OnDestroy {
   displayedColumns: string[] = [
     'image',
     'name',
@@ -63,17 +61,16 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private exercisesService: ExercisesService,
-    private categoriesService: CategoriesService,
     public matDialog: MatDialog,
-    private cdr: ChangeDetectorRef,
-    private dispatcher: Dispatcher
+    private categorySelector: CategorySelector,
+    private exerciseSelector: ExerciseSelector,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     zip(
-      this.exercisesService.getExercises(),
-      this.categoriesService.categories$
+      this.exerciseSelector.selectExercises(),
+      this.categorySelector.selectCategories()
     )
       .pipe(
         map(([exercises, categories]) => {
@@ -93,15 +90,15 @@ export class ExercisesComponent implements OnInit, OnDestroy {
         this.dataSource = dataSource;
       });
 
-    this.exercisesService.exercisesChanged$
-      .pipe(
-        debounceTime(500),
-        switchMap(() => this.exercisesService.getExercises()),
-        takeUntil(this.unsubscribeSubject$)
-      )
-      .subscribe((newData) => {
+    this.exerciseSelector
+      .selectExercises()
+      .pipe(takeUntil(this.unsubscribeSubject$))
+      .subscribe((exercises) => {
+        if (!this.dataSource) {
+          return;
+        }
         this.dataSource.data = this.determineExercisesWithCategories(
-          newData,
+          exercises,
           this.categories
         );
         this.cdr.detectChanges();

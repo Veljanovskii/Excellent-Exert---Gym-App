@@ -1,14 +1,18 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { CategoryState } from "./category.reducer";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/models/category';
+import { getCategories, getCategoryError } from './category.selectors';
 
-const getCategoryFeatureState = createFeatureSelector<CategoryState>('category');
+@Injectable({ providedIn: 'root' })
+export class CategorySelector {
+  constructor(private store$: Store<any>) {}
 
-export const getCategories = createSelector(
-    getCategoryFeatureState,
-    state => state.categories
-);
+  selectCategories(): Observable<Category[]> {
+    return this.store$.select(getCategories);
+  }
 
-export const getCategoryError = createSelector(
-    getCategoryFeatureState,
-    state => state.error
-);
+  selectCategoryError(): Observable<string> {
+    return this.store$.select(getCategoryError);
+  }
+}

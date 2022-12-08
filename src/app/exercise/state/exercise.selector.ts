@@ -1,14 +1,18 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { ExerciseState } from "./exercise.reducer";
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Exercise } from 'src/app/models/exercise';
+import { getExerciseError, getExercises } from './exercise.selectors';
 
-const getExerciseFeatureState = createFeatureSelector<ExerciseState>('exercise');
+@Injectable({ providedIn: 'root' })
+export class ExerciseSelector {
+  constructor(private store$: Store<any>) {}
 
-export const getExercises = createSelector(
-    getExerciseFeatureState,
-    state => state.exercises
-);
+  selectExercises(): Observable<Exercise[]> {
+    return this.store$.select(getExercises);
+  }
 
-export const getExerciseError = createSelector(
-    getExerciseFeatureState,
-    state => state.error
-);
+  selectExerciseError(): Observable<string> {
+    return this.store$.select(getExerciseError);
+  }
+}

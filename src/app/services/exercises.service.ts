@@ -8,7 +8,6 @@ import { Exercise } from '../models/exercise';
 })
 export class ExercisesService {
   private url: string = 'http://localhost:3000/exercises';
-  exercisesChanged$ = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
 
@@ -23,17 +22,14 @@ export class ExercisesService {
 
   addExercise(exercise: Exercise): Observable<any> {
     const updatedExercise: Exercise = {...exercise, popularity: 2.5};
-    this.exercisesChanged$.next(true);
     return this.http.post(this.url, updatedExercise);
   }
 
   editExercise(exercise: Exercise): Observable<any> {
-    this.exercisesChanged$.next(true);
     return this.http.patch(`${this.url}/${exercise.id}`, exercise);
   }
 
   deleteExercise(id: number): Observable<any> {
-    this.exercisesChanged$.next(true);
     return this.http.delete(`${this.url}/${id}`);
   }
 }

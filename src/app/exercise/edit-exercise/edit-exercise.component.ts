@@ -4,10 +4,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { Category } from 'src/app/models/category';
-import { CategoriesService } from 'src/app/services/categories.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dispatcher } from 'src/app/services/dispatcher.service';
 import { ExerciseActions } from '../state/exercise.actions';
+import { CategorySelector } from 'src/app/category/state/category.selector';
 
 @Component({
   selector: 'app-edit-exercise',
@@ -22,12 +22,13 @@ export class EditExerciseComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<EditExerciseComponent>,
-    private categoriesService: CategoriesService,
+    private categorySelector: CategorySelector,
     private dispatcher: Dispatcher,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.exercise = data.exercise;
-    this.categoriesService.categories$.subscribe((categories) => {
+    this.categorySelector.selectCategories()
+    .pipe(take(1)).subscribe((categories) => {
       this.categories = categories;
     });
   }
@@ -51,6 +52,9 @@ export class EditExerciseComponent implements OnInit {
   }
 
   resolveCategory(): string {
+    if (!this.categories) {
+      return '';
+    }
     const id = this.categories
       .find((category) => category.caption == this.exercise.category)
       ?.id.toString();

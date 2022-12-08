@@ -11,24 +11,12 @@ export class CategoriesService {
 
   constructor(private http: HttpClient) {}
 
-  categories$: Observable<Category[]> = this.http
-    .get<Category[]>(this.url)
-    .pipe(
-      tap(data => console.log(data)),
-      shareReplay(),
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.url).pipe(
       catchError((err: HttpErrorResponse) => {
         console.log(err.message);
         return EMPTY;
       })
     );
-
-
-    getCategories(): Observable<Category[]> {
-      return this.http.get<Category[]>(this.url).pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.log(err.message);
-          return EMPTY;
-        })
-      );
-    }
+  }
 }
