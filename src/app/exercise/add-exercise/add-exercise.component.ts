@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from 'src/app/models/exercise';
-import { ExercisesService } from 'src/app/services/exercises.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Dispatcher } from 'src/app/services/dispatcher.service';
+import { ExerciseActions } from '../state/exercise.actions';
 
 @Component({
   selector: 'app-add-exercise',
@@ -15,7 +16,8 @@ export class AddExerciseComponent implements OnInit {
   addForm!: FormGroup;
   exercise = <Exercise>{};
 
-  constructor(private exercisesService: ExercisesService,
+  constructor(
+    private dispatcher: Dispatcher,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class AddExerciseComponent implements OnInit {
     this.exercise.primaryMuscles = this.addForm.controls['primaryMuscles'].value;
     this.exercise.description = this.addForm.controls['description'].value.split(". ");
   
-    this.exercisesService.addExercise(this.exercise).pipe(take(1)).subscribe();
+    this.dispatcher.dispatch(ExerciseActions.addExercise({exercise: this.exercise}));
   }
 
   openSnackBar() {

@@ -1,12 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Exercise } from 'src/app/models/exercise';
-import { ExercisesService } from 'src/app/services/exercises.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Dispatcher } from 'src/app/services/dispatcher.service';
+import { ExerciseActions } from '../state/exercise.actions';
 
 @Component({
   selector: 'app-edit-exercise',
@@ -19,10 +20,10 @@ export class EditExerciseComponent implements OnInit {
   private categories!: Category[];
 
   constructor(
-    private exercisesService: ExercisesService,
     private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<EditExerciseComponent>,
     private categoriesService: CategoriesService,
+    private dispatcher: Dispatcher,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.exercise = data.exercise;
@@ -73,7 +74,7 @@ export class EditExerciseComponent implements OnInit {
       ? description
       : description.split('. ');
 
-    this.exercisesService.editExercise(this.exercise).pipe(take(1)).subscribe();
+    this.dispatcher.dispatch(ExerciseActions.editExercise({exercise: this.exercise}));
   }
 
   openSnackBar() {    

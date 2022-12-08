@@ -60,7 +60,7 @@ export class ExerciseEffects {
         ofType(ExerciseActions.deleteExercise),
         mergeMap(action =>
           this.exercisesService.deleteExercise(action.exerciseId).pipe(
-            map((exerciseId) => ExerciseActions.deleteExerciseSuccess({ exerciseId: exerciseId })),
+            map(() => ExerciseActions.deleteExerciseSuccess({ exerciseId: action.exerciseId })),
             catchError(error => of(ExerciseActions.deleteExerciseFailure({ error })))
           )
         )

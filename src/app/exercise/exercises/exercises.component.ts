@@ -21,14 +21,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddExerciseComponent } from '../add-exercise/add-exercise.component';
 import { EditExerciseComponent } from '../edit-exercise/edit-exercise.component';
 import { DeleteExerciseComponent } from '../delete-exercise/delete-exercise.component';
-import {
-  debounceTime,
-  map,
-  Subject,
-  switchMap,
-  takeUntil,
-  zip,
-} from 'rxjs';
+import { debounceTime, map, Subject, switchMap, takeUntil, zip } from 'rxjs';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { PopularityInfo } from 'src/app/popularity/popularity/popularity.component';
 import { Category } from 'src/app/models/category';
@@ -78,14 +71,16 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.dispatcher.dispatch(CategoryActions.loadCategories());
     zip(
       this.exercisesService.getExercises(),
       this.categoriesService.categories$
     )
       .pipe(
         map(([exercises, categories]) => {
-          const exercisesWithCategories = this.determineExercisesWithCategories(exercises, categories);
+          const exercisesWithCategories = this.determineExercisesWithCategories(
+            exercises,
+            categories
+          );
           this.categories = categories;
           const dataSource = new MatTableDataSource(exercisesWithCategories);
           dataSource.paginator = this.paginator;
@@ -105,7 +100,10 @@ export class ExercisesComponent implements OnInit, OnDestroy {
         takeUntil(this.unsubscribeSubject$)
       )
       .subscribe((newData) => {
-        this.dataSource.data = this.determineExercisesWithCategories(newData, this.categories);
+        this.dataSource.data = this.determineExercisesWithCategories(
+          newData,
+          this.categories
+        );
         this.cdr.detectChanges();
       });
   }
@@ -115,15 +113,17 @@ export class ExercisesComponent implements OnInit, OnDestroy {
     this.unsubscribeSubject$.complete();
   }
 
-  determineExercisesWithCategories(exercises: Exercise[], categories: Category[]): Exercise[] {
+  determineExercisesWithCategories(
+    exercises: Exercise[],
+    categories: Category[]
+  ): Exercise[] {
     return exercises.map(
       (exercise) =>
         ({
           ...exercise,
           category:
-            categories.find(
-              (category) => category.id === exercise.category
-            )?.caption ?? exercise.category,
+            categories.find((category) => category.id === exercise.category)
+              ?.caption ?? exercise.category,
         } as Exercise)
     );
   }
@@ -137,13 +137,13 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   }
 
   openAddDialog(): void {
-    const dialogAddRef = this.matDialog.open(AddExerciseComponent, {
+    this.matDialog.open(AddExerciseComponent, {
       width: '600px',
     });
   }
 
   openEditDialog(exercise: Exercise): void {
-    const dialogEditRef = this.matDialog.open(EditExerciseComponent, {
+    this.matDialog.open(EditExerciseComponent, {
       width: '600px',
       data: {
         exercise: exercise,
@@ -152,7 +152,7 @@ export class ExercisesComponent implements OnInit, OnDestroy {
   }
 
   openDeleteDialog(id: number): void {
-    const dialogDeleteRef = this.matDialog.open(DeleteExerciseComponent, {
+    this.matDialog.open(DeleteExerciseComponent, {
       width: '375px',
       data: {
         index: id,
