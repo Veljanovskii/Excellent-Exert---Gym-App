@@ -52,7 +52,7 @@
       </mat-form-field>
 
     <div mat-dialog-actions>
-      <button mat-button class="addExercise" type="submit" [disabled]="!addForm.valid" [mat-dialog-close]="true" (click)="openSnackBar()">Submit</button>
+      <button mat-button class="addExercise" type="submit" [disabled]="!addForm.valid" [mat-dialog-close]="true" (click)="exerciseAdded$.next(true)">Submit</button>
       <a mat-button class="normalButton" [mat-dialog-close]>Cancel</a>
     </div>
 

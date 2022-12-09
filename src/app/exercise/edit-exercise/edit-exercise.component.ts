@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Exercise } from 'src/app/models/exercise';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { take } from 'rxjs';
+import { debounceTime, Subject, take } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dispatcher } from 'src/app/services/dispatcher.service';
@@ -18,6 +18,7 @@ export class EditExerciseComponent implements OnInit {
   editForm!: FormGroup;
   exercise!: Exercise;
   private categories!: Category[];
+  exerciseEdited$: Subject<any> = new Subject<any>();
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -49,6 +50,11 @@ export class EditExerciseComponent implements OnInit {
       ]),
       description: new FormControl(this.exercise.description),
     });
+
+    this.exerciseEdited$.pipe(debounceTime(500), take(1))
+    .subscribe(() => 
+      this.openSnackBar()
+    );
   }
 
   resolveCategory(): string {

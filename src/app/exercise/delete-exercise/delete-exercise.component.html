@@ -3,7 +3,7 @@
 <div mat-dialog-content>
 
   <div mat-dialog-actions>
-    <button mat-button class="deleteExercise" (click)="this.deleteExercise()" [mat-dialog-close]="true" (click)="openSnackBar()">Yes</button>
+    <button mat-button class="deleteExercise" (click)="this.deleteExercise()" [mat-dialog-close]="true" (click)="exerciseDeleted$.next(true)">Yes</button>
     <a mat-button class="normalButton" [mat-dialog-close]>No</a>
   </div>
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from 'src/app/models/exercise';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { take } from 'rxjs';
+import { debounceTime, Subject, take } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dispatcher } from 'src/app/services/dispatcher.service';
 import { ExerciseActions } from '../state/exercise.actions';
@@ -15,6 +15,7 @@ export class AddExerciseComponent implements OnInit {
 
   addForm!: FormGroup;
   exercise = <Exercise>{};
+  exerciseAdded$: Subject<any> = new Subject<any>();
 
   constructor(
     private dispatcher: Dispatcher,
@@ -30,6 +31,11 @@ export class AddExerciseComponent implements OnInit {
       primaryMuscles: new FormControl('', [Validators.required]),
       description: new FormControl('')
     });
+
+    this.exerciseAdded$.pipe(debounceTime(500), take(1))
+      .subscribe(() => 
+        this.openSnackBar()
+      );
   }
 
   addExercise() {

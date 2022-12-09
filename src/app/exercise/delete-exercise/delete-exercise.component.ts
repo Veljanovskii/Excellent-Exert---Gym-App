@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ExercisesService } from 'src/app/services/exercises.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { take } from 'rxjs';
+import { debounceTime, Subject, take } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Dispatcher } from 'src/app/services/dispatcher.service';
 import { ExerciseActions } from '../state/exercise.actions';
@@ -13,6 +13,7 @@ import { ExerciseActions } from '../state/exercise.actions';
 })
 export class DeleteExerciseComponent implements OnInit {
   index!: number;
+  exerciseDeleted$: Subject<any> = new Subject<any>();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -22,7 +23,12 @@ export class DeleteExerciseComponent implements OnInit {
     this.index = data.index;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.exerciseDeleted$.pipe(debounceTime(500), take(1))
+    .subscribe(() => 
+      this.openSnackBar()
+    );
+  }
 
   openSnackBar() {
     this._snackBar.open('Exercise deleted successfully', 'Okay', {
